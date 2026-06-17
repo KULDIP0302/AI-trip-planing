@@ -37,7 +37,7 @@ function PackageCard({ image, title, location, duration, price, rating }) {
         </div>
 
         <Link
-          to="/package-details"
+          to={`/package/${title}`}
           className="block mt-5 text-center bg-cyan-500 text-white py-2 rounded-lg hover:bg-cyan-600"
         >
           View Details

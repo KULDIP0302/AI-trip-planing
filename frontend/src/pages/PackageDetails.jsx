@@ -1,8 +1,34 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-
+import {useParams} from 'react-router-dom';
 function PackageDetails() {
+  const{title}=useParams();
+  const packageData = {
+  "Goa Beach Tour": {
+    location: "Goa, India",
+    duration: "3 Days / 2 Nights",
+    price: "12,999",
+    rating: "4.8",
+  },
+
+  "Manali Adventure": {
+    location: "Manali, India",
+    duration: "5 Days / 4 Nights",
+    price: "18,999",
+    rating: "4.7",
+  },
+
+  "Kashmir Paradise": {
+    location: "Kashmir, India",
+    duration: "6 Days / 5 Nights",
+    price: "24,999",
+    rating: "4.9",
+  },
+};
+
+const currentPackage = packageData[title];
   return (
+    
     <>
       <Navbar />
 
@@ -17,25 +43,25 @@ function PackageDetails() {
         <div className="mt-8">
 
           <h1 className="text-4xl font-bold">
-            Goa Beach Tour
+            {title}
           </h1>
 
           <p className="text-gray-500 mt-2">
-            📍 Goa, India
+            📍 {currentPackage.location}
           </p>
 
           <div className="flex gap-6 mt-4">
             <span className="text-yellow-500 font-semibold">
-              ⭐ 4.8 Rating
+              ⭐ {currentPackage.rating} Rating
             </span>
 
             <span className="text-gray-600">
-              ⏳ 3 Days / 2 Nights
+              ⏳ {currentPackage.duration}
             </span>
           </div>
 
           <h2 className="text-3xl font-bold text-cyan-600 mt-6">
-            ₹12,999
+            ₹{currentPackage.price}
           </h2>
 
           <p className="mt-6 text-gray-700 leading-8">

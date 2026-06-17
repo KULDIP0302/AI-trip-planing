@@ -45,10 +45,9 @@ function Navbar() {
             <Heart size={22} />
           </Link>
 
-          <button className="relative p-2 rounded-full hover:bg-slate-800 transition hover:scale-110">
-            <Bell size={22} />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
-          </button>
+            <Link to="/notifications">
+              <Bell size={22} />
+            </Link>
 
           <Link
             to="/profile"
