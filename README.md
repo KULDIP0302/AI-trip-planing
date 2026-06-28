@@ -143,6 +143,6 @@ This project is created for learning and portfolio purposes.
 
 **Kuldip**
 
-Aspiring Full Stack Developer passionate about building scalable and modern web applications using React, Node.js, Express.js, MySQL, and AI-powered solutions.
+
 
 ⭐ If you found this project useful, consider giving it a star.
