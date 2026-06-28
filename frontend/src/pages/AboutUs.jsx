@@ -1,9 +1,4 @@
-import {
-  FaGlobeAsia,
-  FaUsers,
-  FaAward,
-  FaHeadset,
-} from "react-icons/fa";
+import { FaGlobeAsia, FaUsers, FaAward, FaHeadset } from "react-icons/fa";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 function AboutUs() {
@@ -39,7 +34,7 @@ function AboutUs() {
 
   return (
     <div className="bg-slate-50 min-h-screen">
-      <Navbar/>
+      <Navbar />
       {/* Hero */}
       <section className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-24">
         <div className="max-w-7xl mx-auto px-6 text-center">
@@ -48,12 +43,11 @@ function AboutUs() {
           </h1>
 
           <p className="max-w-3xl mx-auto text-lg md:text-xl">
-            We create unforgettable travel experiences and help
-            travelers discover the world's most beautiful destinations.
+            We create unforgettable travel experiences and help travelers
+            discover the world's most beautiful destinations.
           </p>
         </div>
       </section>
-
       {/* Story */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -66,40 +60,30 @@ function AboutUs() {
           </div>
 
           <div>
-            <h2 className="text-4xl font-bold mb-6">
-              Our Story
-            </h2>
+            <h2 className="text-4xl font-bold mb-6">Our Story</h2>
 
             <p className="text-gray-600 leading-8">
-              TourNest was founded with one mission —
-              making travel planning easy, affordable and exciting.
-              We connect travelers with the best destinations,
-              experiences and memories around the world.
+              TourNest was founded with one mission — making travel planning
+              easy, affordable and exciting. We connect travelers with the best
+              destinations, experiences and memories around the world.
             </p>
           </div>
         </div>
       </section>
-
       {/* Stats */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
           {stats.map((item, index) => (
-            <div
-              key={index}
-              className="text-center shadow-lg rounded-2xl p-8"
-            >
+            <div key={index} className="text-center shadow-lg rounded-2xl p-8">
               <h2 className="text-4xl font-bold text-blue-600">
                 {item.number}
               </h2>
-              <p className="text-gray-500 mt-2">
-                {item.label}
-              </p>
+              <p className="text-gray-500 mt-2">{item.label}</p>
             </div>
           ))}
         </div>
       </section>
-
-      {/* Why Choose Us */}
+      //why choose us section//
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-14">
@@ -112,23 +96,17 @@ function AboutUs() {
                 key={index}
                 className="bg-white rounded-3xl p-8 shadow-lg hover:-translate-y-2 transition"
               >
-                <div className="text-blue-600 mb-5">
-                  {feature.icon}
-                </div>
+                <div className="text-blue-600 mb-5">{feature.icon}</div>
 
-                <h3 className="text-xl font-semibold mb-3">
-                  {feature.title}
-                </h3>
+                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
 
-                <p className="text-gray-600">
-                  {feature.desc}
-                </p>
+                <p className="text-gray-600">{feature.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

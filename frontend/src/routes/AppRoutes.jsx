@@ -13,6 +13,7 @@ import Settings from '../pages/Settings';
 import AboutUs from '../pages/AboutUs';
 import ContectUs from '../pages/ContectUs';
 import Notifications from '../pages/Notifications';
+import ForgotPassword from '../pages/ForgotPassword';
 function Approuter(){
     return(
         <Routes>
@@ -30,6 +31,7 @@ function Approuter(){
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<ContectUs />} />
             <Route path="/notifications" element={<Notifications/>}/>
+            <Route path="/forgot-password" element={<ForgotPassword/>}/>
         </Routes>
     );
 }
