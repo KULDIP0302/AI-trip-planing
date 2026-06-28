@@ -1,19 +1,148 @@
-# React + Vite
+# 🌍 TourNest - Tourist Package Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive **Tourist Package Management System** built using **React, Tailwind CSS, Node.js, Express.js, and MySQL**. The platform allows users to explore travel destinations, book tour packages, manage bookings, and maintain personalized wishlists through a clean and user-friendly interface.
 
-Currently, two official plugins are available:
+> 🚧 This project is currently under development.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 👤 User Features
 
-## Expanding the ESLint configuration
+- User Registration & Login
+- Browse Tour Packages
+- View Package Details
+- Book Tour Packages
+- Booking Success Page
+- My Bookings
+- Wishlist Management
+- User Profile
+- Account Settings
+- Contact Us
+- About Us
+- Notifications
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-<img width="1365" height="764" alt="image" src="https://github.com/user-attachments/assets/db00cd01-2869-4694-b19f-43dfcef7afb8" />
-<img width="1343" height="727" alt="image" src="https://github.com/user-attachments/assets/112877a6-1a4a-4d6a-9b65-da4d7dde501e" />
-<img width="1366" height="638" alt="image" src="https://github.com/user-attachments/assets/fd257149-58d6-451a-8a46-0797aa62c802" />
+### 🎨 UI Features
+
+- Responsive Design
+- Tailwind CSS
+- Mobile Friendly
+- Modern User Interface
+- Reusable Components
+- Interactive Forms
+- Form Validation using React Hook Form & Zod
+
+### 🔐 Authentication
+
+- Secure Login Validation
+- Register Validation
+- Contact Form Validation
+- Booking Form Validation
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- React.js
+- Vite
+- Tailwind CSS
+- React Router DOM
+- React Hook Form
+- Zod
+- Lucide React
+- React Icons
+
+### Backend
+
+- Node.js
+- Express.js
+- MySQL
+- JWT Authentication
+- Bcrypt.js
+- Multer
+
+---
+
+## 📂 Project Structure
+
+```text
+tourist-package-management/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── Components/
+│   │   ├── Pages/
+│   │   ├── Schemas/
+│   │   ├── Routes/
+│   │   ├── Assets/
+│   │   └── App.jsx
+│
+├── backend/
+│   ├── Controllers/
+│   ├── Models/
+│   ├── Routes/
+│   ├── Middleware/
+│   ├── Config/
+│   └── server.js
+│
+└── README.md
+```
+
+---
+
+## 🚀 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/tourist-package-management.git
+```
+
+Navigate to the project:
+
+```bash
+cd tourist-package-management
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions, suggestions, and improvements are always welcome.
+
+1. Fork the repository
+2. Create a new feature branch
+3. Commit your changes
+4. Push the branch
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is created for learning and portfolio purposes.
+
+---
+
+## 👨‍💻 Developer
+
+**Kuldip**
+
+Aspiring Full Stack Developer passionate about building scalable and modern web applications using React, Node.js, Express.js, MySQL, and AI-powered solutions.
+
+⭐ If you found this project useful, consider giving it a star.
