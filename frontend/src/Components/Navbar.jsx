@@ -5,7 +5,6 @@ function Navbar() {
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800 shadow-2xl">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
         {/* Logo */}
         <Link
           to="/"
@@ -16,12 +15,12 @@ function Navbar() {
 
         {/* Nav Links */}
         <div className="hidden md:flex items-center gap-8">
-
           {[
             { name: "Home", path: "/" },
             { name: "Packages", path: "/packages" },
             { name: "About", path: "/about" },
             { name: "Contact", path: "/contact" },
+            { name: "trip-buddy", path: "/trip-buddy" },
           ].map((item) => (
             <Link
               key={item.name}
@@ -32,22 +31,20 @@ function Navbar() {
               <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
-
         </div>
 
         {/* Right Side */}
         <div className="flex items-center gap-4">
-
           <Link
             to="/wishlist"
-            className="p-2 rounded-full hover:bg-slate-800 transition hover:scale-110"
+            className="p-2 rounded-full hover:bg-slate-800 transition hover:scale-11"
           >
             <Heart size={22} />
           </Link>
 
-            <Link to="/notifications">
-              <Bell size={22} />
-            </Link>
+          <Link to="/notifications">
+            <Bell size={22} />
+          </Link>
 
           <Link
             to="/profile"
@@ -69,9 +66,7 @@ function Navbar() {
           >
             Register
           </Link>
-
         </div>
-
       </div>
     </nav>
   );

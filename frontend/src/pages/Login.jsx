@@ -53,7 +53,7 @@ function Login() {
               Sign in to continue your journey.
             </p>
             <form onSubmit={handleSubmit(onsubmit)}>
-              //email input//
+              email input
               <div className="relative mb-5">
                 <Mail
                   size={18}
@@ -71,7 +71,7 @@ function Login() {
                   </p>
                 )}
               </div>
-              //password input//
+              password
               <div className="relative mb-4">
                 <Lock
                   size={18}
@@ -88,7 +88,7 @@ function Login() {
                     {errors.password.message}
                   </p>
                 )}
-                //submit button//
+                submit button
                 <button
                   type="button"
                   onClick={() => setShowPassword((prev) => !prev)}
