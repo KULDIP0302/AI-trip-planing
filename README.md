@@ -1,6 +1,6 @@
 # 🌍 TourNest - Tourist Package Management System
 
-A modern and responsive **Tourist Package Management System** built using **React, Tailwind CSS, Node.js, Express.js, and MySQL**. The platform allows users to explore travel destinations, book tour packages, manage bookings, and maintain personalized wishlists through a clean and user-friendly interface.
+A modern and responsive **Tourist Package Management System** built using **React, Tailwind CSS, Node.js, Express.js, and MySQL server,mysqlworkbech**. The platform allows users to explore travel destinations, book tour packages, manage bookings, and maintain personalized wishlists through a clean and user-friendly interface.
 
 > 🚧 This project is currently under development.
 
