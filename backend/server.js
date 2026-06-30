@@ -1,26 +1,35 @@
-import express, { app } from "express"; //create express application
-import cors from "cors";
-import dotenv from "dotenv"; //variables from .env file
-import cookieParser from "cookie-parser";
+/**
+ * Tourist Package Management with AI
+ * Backend Entry Point
+ */
 
-dotenv.config();
+// Load environment variables
+require("dotenv").config();
 
-//set server port
+// Import required packages
+const express = require("express");
+const cors = require("cors");
+
+// Create Express app
+const app = express();
+
+// Port number
 const PORT = process.env.PORT || 5000;
 
-//middlewere
-//allow frontend requests
+// Middleware
 app.use(cors());
-
-//parse json data from request body
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-//api route
+// Test Route
 app.get("/", (req, res) => {
-  req.send("tourist package running");
+  res.status(200).json({
+    success: true,
+    message: "Tourist Package Management Backend Running 🚀",
+  });
 });
 
-//start server
+// Start Server
 app.listen(PORT, () => {
-  console.log("server runnning on port ${PORT}");
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
