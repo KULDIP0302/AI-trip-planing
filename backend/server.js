@@ -1,11 +1,7 @@
-/**
- * Tourist Package Management with AI
- * Backend Entry Point
- */
-
 // Load environment variables
 require("dotenv").config();
-
+//database conectinon
+require("./config/db");
 // Import required packages
 const express = require("express");
 const cors = require("cors");
