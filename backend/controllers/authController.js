@@ -1,57 +1,68 @@
-//authentication controller
+// Import bcrypt package
 const bcrypt = require("bcrypt");
 
-//import user model
+// Import user model
 const userModel = require("../models/userModel");
-//register new user
+
+// Register new user
 const registerUser = (req, res) => {
-  try {
-    //getuser data from request body
-    const { full_name, email, password, phone } = req.body;
-    if (!full_name || !email || !password || !phone) {
-      return res.status(400).json({
+  // Get data from frontend
+  const { full_name, email, password, phone } = req.body;
+
+  // Check required fields
+  if (!full_name || !email || !password || !phone) {
+    return res.status(400).json({
+      success: false,
+      message: "Please fill all required fields",
+    });
+  }
+
+  // Check email already exists
+  userModel.findUserByEmail(email, (err, result) => {
+    if (err) {
+      return res.status(500).json({
         success: false,
-        message: "please provide all required fields",
+        message: "Database Error",
       });
     }
-    if (Result.length > 0) {
+
+    // Email already exists
+    if (result.length > 0) {
       return res.status(400).json({
         success: false,
-        message: "user already exists",
+        message: "User already exists",
       });
     }
-    //hash password
+
+    // Hash password
     const hashedPassword = bcrypt.hashSync(password, 10);
-    //create new user
+
+    // Create user object
     const userData = {
       full_name,
       email,
       password: hashedPassword,
       phone,
     };
-    //save user
-    userModel.createUser(userData, (err, result) => {
+
+    // Save user into database
+    userModel.createUser(userData, (err) => {
       if (err) {
         return res.status(500).json({
           success: false,
-          message: "internal server error",
+          message: "Registration Failed",
         });
       }
+
       return res.status(201).json({
         success: true,
-        message: "user registered successfully",
+        message: "User Registered Successfully",
       });
     });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({
-      success: false,
-      message: "internal server error",
-    });
-  }
+  });
 };
 
-//export controller functions
+// Export function
 module.exports = {
   registerUser,
 };
