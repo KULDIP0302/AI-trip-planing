@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 
 // Import user model
 const userModel = require("../models/userModel");
+const generateToken = require("../utils/generateToken");
 
 // Register new user
 const registerUser = (req, res) => {
@@ -62,7 +63,67 @@ const registerUser = (req, res) => {
   });
 };
 
+// Login user
+const loginUser = (req, res) => {
+  // Get email and password
+  const { email, password } = req.body;
+
+  // Check required fields
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Please enter email and password",
+    });
+  }
+
+  // Check user in database
+  userModel.findUserByEmail(email, (err, result) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Database Error",
+      });
+    }
+
+    // User not found
+    if (result.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    const user = result[0];
+
+    // Compare password
+    const isMatch = bcrypt.compareSync(password, user.password);
+
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid password",
+      });
+    }
+
+    // Generate JWT Token
+    const token = generateToken(user);
+
+    return res.status(200).json({
+      success: true,
+      message: "Login Successful",
+      token,
+      user: {
+        id: user.id,
+        full_name: user.full_name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  });
+};
+
 // Export function
 module.exports = {
   registerUser,
+  loginUser,
 };
