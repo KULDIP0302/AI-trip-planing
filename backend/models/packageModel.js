@@ -21,9 +21,15 @@ const getAllPackages = (callback) => {
   const sql = "SELECT * FROM packages ORDER BY id DESC";
   db.query(sql, callback);
 };
+//get packagebyid
+const getPackageById = (id, callback) => {
+  const sql = "SELECT*FROM packages WHERE id=?";
+  db.query(sql, [id], callback);
+};
 
 //export
 module.exports = {
   createPackage,
   getAllPackages,
+  getPackageById,
 };

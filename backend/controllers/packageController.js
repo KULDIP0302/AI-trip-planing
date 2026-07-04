@@ -67,8 +67,33 @@ const getAllPackages = (req, res) => {
   });
 };
 
+//get package by id
+const getPackageById = (req, res) => {
+  const { id } = req.params;
+  packageModel.getPackageById(id, (err, result) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "database error",
+      });
+    }
+    if (result.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "package not found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "package found",
+      package: result[0],
+    });
+  });
+};
+
 // Export functions
 module.exports = {
   addPackage,
   getAllPackages,
+  getPackageById,
 };
