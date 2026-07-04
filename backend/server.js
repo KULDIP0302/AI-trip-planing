@@ -8,7 +8,7 @@ const cors = require("cors");
 
 // Create Express app
 const app = express();
-
+const packageRoutes = require("./routes/packageRoutes");
 // Port number
 const PORT = process.env.PORT || 5000;
 const authRoutes = (reu = require("./routes/authRoutes"));
@@ -17,6 +17,9 @@ const authRoutes = (reu = require("./routes/authRoutes"));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//package routes
+app.use("/api/packages", packageRoutes);
 
 //authentication routes
 app.use("/api/auth", authRoutes);
