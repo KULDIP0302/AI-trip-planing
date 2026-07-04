@@ -121,9 +121,28 @@ const loginUser = (req, res) => {
     });
   });
 };
-
+const getProfile = (req, res) => {
+  const UserId = req.user.id;
+  userModel.getUserById(UserId, (err, result) => {
+    if (err) {
+      return res.status(500).json({
+        message: "database error",
+      });
+    }
+    if (result.length === 0) {
+      return res.status(404).json({
+        message: "user not found",
+      });
+    }
+    return res.status(200).json({
+      message: "user profile fetched successfully",
+      user: result[0],
+    });
+  });
+};
 // Export function
 module.exports = {
   registerUser,
   loginUser,
+  getProfile,
 };
