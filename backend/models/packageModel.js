@@ -27,9 +27,40 @@ const getPackageById = (id, callback) => {
   db.query(sql, [id], callback);
 };
 
+const updatePackage = (id, packageData, callback) => {
+  const sql = `
+        UPDATE packages
+        SET
+            title = ?,
+            description = ?,
+            location = ?,
+            price = ?,
+            duration = ?,
+            category = ?,
+            image = ?
+        WHERE id = ?
+    `;
+
+  db.query(
+    sql,
+    [
+      packageData.title,
+      packageData.description,
+      packageData.location,
+      packageData.price,
+      packageData.duration,
+      packageData.category,
+      packageData.image,
+      id,
+    ],
+    callback,
+  );
+};
+
 //export
 module.exports = {
   createPackage,
   getAllPackages,
   getPackageById,
+  updatePackage,
 };
