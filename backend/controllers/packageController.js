@@ -147,10 +147,32 @@ const updatePackage = (req, res) => {
   });
 };
 
+//delete package
+const deletePackage = (req, res) => {
+  //get package id from url
+  const { id } = req.params;
+  packageModel.deletPackage(id, (err, result) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "database error",
+      });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "package not found",
+      });
+    }
+    return res.status(200).json();
+  });
+};
+
 // Export functions
 module.exports = {
   addPackage,
   getAllPackages,
   getPackageById,
   updatePackage,
+  deletePackage,
 };

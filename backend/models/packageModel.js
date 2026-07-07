@@ -57,10 +57,17 @@ const updatePackage = (id, packageData, callback) => {
   );
 };
 
+//delete package
+const deletPackage = (id, callback) => {
+  const sql = "DELETE FROM packages WHERE id=?";
+  db.query(sql, [id], callback);
+};
+
 //export
 module.exports = {
   createPackage,
   getAllPackages,
   getPackageById,
   updatePackage,
+  deletPackage,
 };
