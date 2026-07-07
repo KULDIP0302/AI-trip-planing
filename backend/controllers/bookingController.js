@@ -36,7 +36,28 @@ const createBooking = (req, res) => {
     });
   });
 };
-
+const getMyBookings = (req, res) => {
+  const { user_id } = req.body;
+  if (!user_id) {
+    return res.status(400).json({
+      success: false,
+      message: "user id is required",
+    });
+  }
+  bookingModel.getBookingsByUserId(user_id, (err, result) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "database error",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      bookings: result,
+    });
+  });
+};
 module.exports = {
   createBooking,
+  getMyBookings,
 };
