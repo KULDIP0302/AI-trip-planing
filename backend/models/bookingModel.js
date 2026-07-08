@@ -42,8 +42,17 @@ const getBookingsByUserId = (user_id, callback) => {
   db.query(sql, [user_id], callback);
 };
 
+const cancelBooking = (id, callback) => {
+  const sql = `
+  UPDATE bookings 
+  SET status='cancelled'
+  WHERE id=?`;
+  db.query(sql, [id], callback);
+};
+
 // Export function
 module.exports = {
   createBooking,
   getBookingsByUserId,
+  cancelBooking,
 };
