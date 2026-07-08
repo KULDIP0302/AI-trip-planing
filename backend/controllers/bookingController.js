@@ -57,7 +57,32 @@ const getMyBookings = (req, res) => {
     });
   });
 };
+//cancel booking
+const cancelBooking = (req, res) => {
+  const { id } = req.params;
+  bookingModel.cancelBooking(id, (err, result) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Database error",
+      });
+    }
+    // check booking exists
+    if (result.affectedRows === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "booking not found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Booking cancelled successfully",
+    });
+  });
+};
+
 module.exports = {
   createBooking,
   getMyBookings,
+  cancelBooking,
 };
