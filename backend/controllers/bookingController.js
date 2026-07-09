@@ -1,8 +1,8 @@
 const bookingModel = require("../models/bookingModel");
 const createBooking = (req, res) => {
-  const { user_id, package_id, booking_date, number_of_people, total_price } =
-    req.body;
+  const { package_id, booking_date, number_of_people, total_price } = req.body;
 
+  const user_id = req.user.id;
   //check required fields
   if (
     !user_id ||
@@ -37,13 +37,8 @@ const createBooking = (req, res) => {
   });
 };
 const getMyBookings = (req, res) => {
-  const { user_id } = req.body;
-  if (!user_id) {
-    return res.status(400).json({
-      success: false,
-      message: "user id is required",
-    });
-  }
+  const user_id = req.user.id;
+
   bookingModel.getBookingsByUserId(user_id, (err, result) => {
     if (err) {
       return res.status(500).json({

@@ -5,11 +5,12 @@ const {
   getMyBookings,
   cancelBooking,
 } = require("../controllers/bookingController");
+const authMiddleware = require("../middleware/authMiddleware");
 
 //createbooking
-router.post("/book-package", createBooking);
-router.post("/my-bookings", getMyBookings);
-router.put("/cancel-booking/:id", cancelBooking);
+router.post("/book-package", authMiddleware, createBooking);
+router.post("/my-bookings", authMiddleware, getMyBookings);
+router.put("/cancel-booking/:id", authMiddleware, cancelBooking);
 
 //export
 module.exports = router;
