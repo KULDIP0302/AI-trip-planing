@@ -1,7 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Heart, Bell, UserCircle } from "lucide-react";
+import { useState, useEffect } from "react";
 
 function Navbar() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    setUser(null);
+
+    navigate("/login");
+  };
+
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800 shadow-2xl">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -20,7 +41,7 @@ function Navbar() {
             { name: "Packages", path: "/packages" },
             { name: "About", path: "/about" },
             { name: "Contact", path: "/contact" },
-            { name: "trip-buddy", path: "/trip-buddy" },
+            { name: "Trip Buddy", path: "/trip-buddy" },
           ].map((item) => (
             <Link
               key={item.name}
@@ -37,35 +58,60 @@ function Navbar() {
         <div className="flex items-center gap-4">
           <Link
             to="/wishlist"
-            className="p-2 rounded-full hover:bg-slate-800 transition hover:scale-11"
+            className="p-2 rounded-full hover:bg-slate-800 transition hover:scale-110"
           >
-            <Heart size={22} />
+            <Heart size={22} className="text-white" />
           </Link>
 
-          <Link to="/notifications">
-            <Bell size={22} />
+          <Link
+            to="/notifications"
+            className="p-2 rounded-full hover:bg-slate-800 transition hover:scale-110"
+          >
+            <Bell size={22} className="text-white" />
           </Link>
 
           <Link
             to="/profile"
             className="hover:text-cyan-400 transition hover:scale-110"
           >
-            <UserCircle size={34} />
+            <UserCircle size={34} className="text-white" />
           </Link>
 
-          <Link
-            to="/login"
-            className="px-5 py-2 rounded-xl border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
-          >
-            Login
-          </Link>
+          {user ? (
+            <>
+              <Link
+                to="/my-bookings"
+                className="text-cyan-400 font-semibold hover:text-cyan-300"
+              >
+                My Bookings
+              </Link>
 
-          <Link
-            to="/register"
-            className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/40"
-          >
-            Register
-          </Link>
+              <span className="text-white font-medium">{user.full_name}</span>
+
+              <button
+                onClick={handleLogout}
+                className="px-5 py-2 rounded-xl bg-red-500 hover:bg-red-600 text-white transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="px-5 py-2 rounded-xl border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all duration-300"
+              >
+                Login
+              </Link>
+
+              <Link
+                to="/register"
+                className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 transition-all duration-300"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
