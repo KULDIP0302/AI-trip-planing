@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import api from "../services/api";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,18 +10,34 @@ import Navbar from "../components/Navbar";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
-  const onsubmit = (data) => {
-    console.log(data);
-    //backend APi call
-  };
+  const onsubmit = async (data) => {
+    try {
+      const response = await api.post("/auth/login", {
+        email: data.email,
+        password: data.password,
+      });
 
+      // Save token
+      localStorage.setItem("token", response.data.token);
+
+      // Save user
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      alert(response.data.message);
+
+      navigate("/");
+    } catch (error) {
+      alert(error.response?.data?.message || "Login Failed");
+    }
+  };
   return (
     <>
       <Navbar />
@@ -112,8 +129,12 @@ function Login() {
                 </Link>
               </div>
               {/* Button */}
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition duration-300">
-                Sign In
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white py-3 rounded-xl font-semibold transition duration-300"
+              >
+                {isSubmitting ? "Signing In..." : "Sign In"}
               </button>
             </form>
             <div className="my-6 text-center text-gray-400">───── OR ─────</div>
