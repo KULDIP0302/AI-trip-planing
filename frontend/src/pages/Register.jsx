@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Phone, Lock, Eye, EyeOff } from "lucide-react";
 import { registerSchema } from "../schemas/RegisterSchema";
 import Footer from "../Components/Footer";
 import Navbar from "../components/Navbar";
 import { zodResolver } from "@hookform/resolvers/zod";
+import api from "../services/api";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -19,9 +20,21 @@ function Register() {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // backend api call
+  const onSubmit = async (data) => {
+    try {
+      const response = await api.post("/auth/register", {
+        full_name: data.fullName,
+        email: data.email,
+        phone: data.phone,
+        password: data.password,
+      });
+
+      alert(response.data.message);
+
+      navigate("/login");
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration Failed");
+    }
   };
 
   return (
