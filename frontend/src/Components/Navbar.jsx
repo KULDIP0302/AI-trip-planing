@@ -1,18 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Heart, Bell, UserCircle } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function Navbar() {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
+  const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
-
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
