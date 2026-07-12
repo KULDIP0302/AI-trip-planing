@@ -30,7 +30,7 @@ function Packages() {
     const fetchPackages = async () => {
       try {
         const response = await api.get("/packages/get-packages");
-        setPackages(response.data.package);
+        setPackages(response.data.packages);
       } catch (error) {
         console.log(error);
         alert("Failed to load packages");
