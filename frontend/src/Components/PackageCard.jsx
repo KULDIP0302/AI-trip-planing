@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function PackageCard({ image, title, location, duration, price, rating }) {
+function PackageCard({ id, image, title, location, duration, price, rating }) {
   const [isHovered, setIsHovered] = useState(false);
   const [saved, setSaved] = useState(false);
   const handleWishlist = () => {
@@ -30,7 +30,7 @@ function PackageCard({ image, title, location, duration, price, rating }) {
           {saved ? "❤️ Added To Wishlist" : "🤍 Add To Wishlist"}
         </button>
         <Link
-          to={`/package/${title}`}
+          to={`/package/${id}`}
           className="block mt-5 text-center bg-cyan-500 text-white py-2 rounded-lg hover:bg-cyan-600"
         >
           View Details
