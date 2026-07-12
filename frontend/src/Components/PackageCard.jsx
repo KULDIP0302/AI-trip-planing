@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function PackageCard({ id, image, title, location, duration, price, rating }) {
-  const [isHovered, setIsHovered] = useState(false);
   const [saved, setSaved] = useState(false);
   const handleWishlist = () => {
     setSaved(!saved);
