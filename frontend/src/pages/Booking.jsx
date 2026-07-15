@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
-import { email } from "zod";
 function Booking() {
   const { id } = useParams();
   const navigate = useNavigate();
