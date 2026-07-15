@@ -3,8 +3,12 @@ import { motion } from "framer-motion";
 import { bookingSchema } from "../schemas/bookingSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useParams, useNavigate } from "react-router-dom";
+import api from "../services/api";
 import { email } from "zod";
 function Booking() {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,10 +17,27 @@ function Booking() {
     resolver: zodResolver(bookingSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
 
-    // Backend API
+      const bookingData = {
+        user_id: user.id,
+        package_id: Number(id),
+        booking_date: data.travelDate,
+        number_of_people: Number(data.travelers),
+        total_price: 12999 * Number(data.travelers),
+      };
+
+      const response = await api.post("/bookings/book-package", bookingData);
+
+      alert(response.data.message);
+
+      navigate("/my-bookings");
+    } catch (error) {
+      console.log(error);
+      alert(error.response?.data?.message || "Booking Failed");
+    }
   };
   return (
     <>
@@ -65,7 +86,7 @@ function Booking() {
                   <input
                     type="email"
                     placeholder="Email Address"
-                    {...register(email)}
+                    {...register("email")}
                     className="border p-4 rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none"
                   />
                   {errors.email && (
